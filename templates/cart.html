@@ -1,0 +1,60 @@
+{% extends "./base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="inner_container">
+  <div class="row mt-4 mb-4">
+    <div class="col-md">
+      <div class="card card-body">
+        <h3 class="card-title text-center">Your Cart</h3>
+        <br>
+        <br>
+        <table class="table">
+            <tr>
+                <th><h5>Items: <strong>{{order.get_cart_items}}</strong></h5></th>
+                <th><h5>Total:<strong> ${{order.get_cart_total|floatformat:2}}</strong></h5></th>
+                <th>
+                    <a  style="float:right; margin:5px;" class="btn btn-success" href="#">Checkout</a>
+                </th>
+            </tr>
+        </table>
+
+        <div class="col-12">
+          <table class="table table-image table-responsive">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Item</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in items %}
+              <tr>
+                <td>{{ item.product.id }}</td>
+                <td>{{ item.product.name }}</td>
+                <td>${{item.product.price|floatformat:2}}</td>
+                <td>{{item.quantity}} 
+                  <div class="quantity">
+                    <img data-product="{{item.product.id}}" data-action="add" class="chg-quantity update-cart" src="{% static 'images/arrow-up.png' %}">
+                    <img data-product="{{item.product.id}}" data-action="remove" class="chg-quantity update-cart" src="{% static 'images/arrow-down.png' %}">
+                  </div>
+                </td>
+                <td>${{item.get_total|floatformat:2}}</td>
+              </tr>
+              {% endfor %}
+            </tbody> 
+          </table>
+        </div>
+        <div class="row justify-content-center">
+          <a href="{% url 'index' %}" class="btn btn-primary mb-4">Continue Shopping</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

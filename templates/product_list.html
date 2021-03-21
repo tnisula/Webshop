@@ -1,0 +1,42 @@
+{% extends "./base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="inner_container">
+  <div class="row mt-4 mb-4">
+    <div class="col-md">
+      <div class="card card-body">
+        <h3 class="card-title text-center">Filtered Product(s) in order</h3>
+        <table class="table table-image table-responsive">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Title</th>
+              <th scope="col">Product Code</th>
+              <th scope="col">Price</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for product in object_list %}
+            <tr>
+              <td>{{ product.id }}</td>
+              <td>{{ product.name }}</td>
+              <td>{{ product.productCode }}</td>
+              <td>{{ product.price }}</td>
+              <td><a href="{% url 'edit-product' pk=product.pk %}" class="btn btn-info" data-toggle="tooltip" title="View details"><i class="fa fa-edit fa-fw"></i></a></td>
+              <td><button data-product="{{product.id}}" data-action="add" class="btn btn-secondary add-btn update-cart">Add to Cart</button></td>
+            </tr>
+            {% endfor %}
+          </tbody> 
+        </table>
+        <div class="row justify-content-center">
+          <a href="{% url 'index' %}" class="btn btn-primary mb-4">Back</a>
+        </div>
+      </div> 
+    </div>
+  </div>
+</div>
+
+{% endblock %}
