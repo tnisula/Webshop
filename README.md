@@ -70,9 +70,22 @@ Then install the project dependencies with
 pip install -r requirements.txt   The requirements.txt file is in Webshop directory.
 ```
 
-Run command python manage.py makemigrations and python manage.py migrate to create tables in the database.
+Run command 
+```
+python manage.py makemigrations
+```
 
-You can create admin user, if you want by this command python manage.py createsuperuser.
+and 
+
+```
+python manage.py migrate
+```
+to create tables in the database.
+
+You can create admin user, if you want by this command 
+```
+python manage.py createsuperuser
+```
 
 Now you can run the project with this command
 
